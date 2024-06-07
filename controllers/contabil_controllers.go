@@ -1,30 +1,30 @@
 package controllers
 
 import (
+	"context"
 	"encoding/json"
 	"log"
 	"net/http"
+	"time"
 
-	"github.com/guirialli/dolar-api/database"
-	"github.com/guirialli/dolar-api/models"
+	"github.com/guirialli/dolar-api/dao"
+	"github.com/guirialli/dolar-api/services"
 )
 
 func ContabilGet(w http.ResponseWriter, r *http.Request) {
-	var cotacao models.USDBRL
-	req, err := http.Get("https://economia.awesomeapi.com.br/json/last/USD-BRL")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	defer req.Body.Close()
+	ctxGetCotacao, cancelGetCotacao := context.WithTimeout(context.Background(), 200*time.Millisecond)
+	cotacao, err := services.GetCotacaoDolarBRL(ctxGetCotacao)
+	defer cancelGetCotacao()
 
-	err = json.NewDecoder(req.Body).Decode(&cotacao)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		log.Println(err.Error())
+		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	database.DB.Save(&cotacao.USDBRL)
+	ctxWriteContacao, cancelWriteContacao := context.WithTimeout(context.Background(), 10*time.Millisecond)
+	dao.ContabilAdd(ctxWriteContacao, cotacao)
+	defer cancelWriteContacao()
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
