@@ -56,10 +56,3 @@ O desafio consiste em criar um cliente e um servidor em Go, onde o cliente faz u
 
 - **main.go**: É o arquivo de entrada para o programa, onde a execução principal é iniciada relacionado ao desafio.
 
-
-
-## Notas Adicionais
-
-- Certifique-se de fornecer o link do seu repositório ao finalizar o desafio para a correção.
-
----
