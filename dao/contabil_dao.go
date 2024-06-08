@@ -2,18 +2,19 @@ package dao
 
 import (
 	"context"
-	"log"
+	"fmt"
 	"time"
 
 	"github.com/guirialli/dolar-api/database"
 	"github.com/guirialli/dolar-api/models"
 )
 
-func ContabilAdd(ctx context.Context, contabil *models.Contabil) {
+func ContabilAdd(ctx context.Context, contabil *models.Contabil) error {
 	select {
 	case <-ctx.Done():
-		log.Println(ctx.Err())
+		return fmt.Errorf(ctx.Err().Error() + " on persist database")
 	case <-time.After(10 * time.Millisecond):
 		database.DB.Save(contabil)
+		return nil
 	}
 }

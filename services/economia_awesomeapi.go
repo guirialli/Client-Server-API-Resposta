@@ -3,6 +3,7 @@ package services
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/guirialli/dolar-api/models"
@@ -23,7 +24,7 @@ func GetCotacaoDolarBRL(ctx context.Context) (*models.Contabil, error) {
 
 	select {
 	case <-ctx.Done():
-		return nil, ctx.Err()
+		return nil, fmt.Errorf(ctx.Err().Error() + " on request to API")
 	default:
 		return &cotacao.USDBRL, nil
 	}
