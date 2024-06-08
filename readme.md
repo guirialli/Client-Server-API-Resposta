@@ -29,7 +29,7 @@ O desafio consiste em criar um cliente e um servidor em Go, onde o cliente faz u
 1. Certifique-se de ter Go instalado em sua máquina.
 2. Clone este repositório: `git clone https://github.com/guirialli/Client-Server-API-Resposta/`
 3. Navegue até o diretório do projeto
-4. Execute `go run main.go` para iniciar o servidor.
+4. Execute `go run main.go` para iniciar a solução.
    
 ## Organização do Proejeto
 
