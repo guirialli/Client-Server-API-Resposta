@@ -27,11 +27,10 @@ O desafio consiste em criar um cliente e um servidor em Go, onde o cliente faz u
 ## Executando a Solução
 
 1. Certifique-se de ter Go instalado em sua máquina.
-2. Clone este repositório: `git clone https://github.com/seu-usuario/seu-repositorio.git`
-3. Navegue até o diretório do projeto: `cd seu-repositorio`
-4. Execute `go run server.go` para iniciar o servidor.
-5. Em outra janela do terminal, execute `go run client.go` para fazer a solicitação de cotação ao servidor.
-
+2. Clone este repositório: `git clone https://github.com/guirialli/Client-Server-API-Resposta/`
+3. Navegue até o diretório do projeto
+4. Execute `go run main.go` para iniciar o servidor.
+   
 ## Organização do Proejeto
 
 - **client**: Contém o código relacionado ao cliente que faz a solicitação HTTP para o servidor. O arquivo `cliente.go` contém a lógica para fazer essa solicitação.
