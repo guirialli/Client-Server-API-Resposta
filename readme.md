@@ -1,4 +1,3 @@
-Entendi! Aqui está um README para sua resposta ao desafio:
 
 ---
 
