@@ -35,7 +35,7 @@ func ContabilGetBid(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	go writeCotacaoDBContext(cotacao)
+	writeCotacaoDBContext(cotacao)
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)

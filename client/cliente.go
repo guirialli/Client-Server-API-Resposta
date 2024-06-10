@@ -14,7 +14,7 @@ import (
 func getBind(ctx context.Context) (string, error) {
 	req, err := http.Get("http://localhost:8080/cotacao")
 	if err != nil {
-		panic(err)
+		return getBind(ctx)
 	}
 	defer req.Body.Close()
 
