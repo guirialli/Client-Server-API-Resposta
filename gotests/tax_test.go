@@ -1,15 +1,15 @@
-package functions_test
+package gotests_test
 
 import (
 	"testing"
 
-	"github.com/guirialli/pos/test/functions"
+	"github.com/guirialli/pos/test/gotests"
 )
 
 func TestTaxMoreEq1000(t *testing.T) {
 	amount := 1000.00
 	expected := 1100.00
-	result := functions.CalculateTax(amount)
+	result := gotests.CalculateTax(amount)
 
 	if result != expected {
 		t.Errorf("Expected %f, got %f", expected, result)
@@ -19,7 +19,7 @@ func TestTaxMoreEq1000(t *testing.T) {
 func TestTaxLess1000(t *testing.T) {
 	amount := 500.00
 	expected := 525.00
-	result := functions.CalculateTax(amount)
+	result := gotests.CalculateTax(amount)
 
 	if result != expected {
 		t.Errorf("Expected %f, got %f", expected, result)
@@ -36,7 +36,7 @@ func TestCalculateTaxBatch(t *testing.T) {
 		{1000000.00, 1200000.00},
 	}
 	for _, test := range tests {
-		result := functions.CalculateTax(test.amount)
+		result := gotests.CalculateTax(test.amount)
 		if result != test.expected {
 			t.Errorf("Expected %f, got %f", test.expected, result)
 		}
@@ -45,7 +45,7 @@ func TestCalculateTaxBatch(t *testing.T) {
 
 func BenchmarkCalculateTax(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		functions.CalculateTax(1000.00)
+		gotests.CalculateTax(1000.00)
 	}
 }
 
@@ -55,7 +55,7 @@ func FuzzCalculateTax(f *testing.F) {
 		f.Add(amount)
 	}
 	f.Fuzz(func(t *testing.T, amount float64) {
-		result := functions.CalculateTax(amount)
+		result := gotests.CalculateTax(amount)
 		if amount <= 0 && result != 0 {
 			t.Errorf("amount = %f, result = %f", amount, result)
 		}
